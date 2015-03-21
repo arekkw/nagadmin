@@ -12,7 +12,7 @@ You will need the following things properly installed on your computer.
 * [Ember CLI](http://www.ember-cli.com/)
 * [PhantomJS](http://phantomjs.org/)
 
-In order to deploy the application you will also need the following installed.
+In order to deploy the application to Firebase, you will also need the following installed.
 
 * [firebase tools](http://firebase.com) - Install via `npm install -g firebase-tools`
 
@@ -21,7 +21,7 @@ In order to deploy the application you will also need the following installed.
 * `git clone <repository-url>` this repository
 * change into the new directory
 * `npm install`
-* `bower install`
+* `ember install`
 
 ## Logging in
 For security reasons, we've locked down the main application db to only known users at 
@@ -52,6 +52,7 @@ However, if you would like to spin up your own environment, follow these instruc
 * Choose a name
 * Set the command: `ember server --port $PORT --live-reload false`
 * Visit the application at <workspace-name>-<user-name>.c9.io
+* You will need to add your domain to Google and/or Firebase oauth in order to log in.
 
 ### Code Generators
 
@@ -71,9 +72,6 @@ Make use of the many generators for code, try `ember help generate` for more det
 
 * `ember build --environment production` (production)
 * `firebase deploy -f nag-admin`
-
-
-
 
 ## Further Reading / Useful Links
 
