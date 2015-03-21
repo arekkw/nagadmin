@@ -1,9 +1,11 @@
 var Firebase = require('firebase');
 var Client = require('node-rest-client').Client;
 var client = new Client();
-var firebaseUrl = "https://nag-admin-dev.firebaseio.com";
-var firebaseToken = "ac6HiHl3k8uByqetihrVBkuc0ciHpK9moxxpTKg5";
-var esPath = "https://dez3usb6ul:758uye2hu1@whs-2051859060.us-west-2.bonsai.io";
+
+// Use env variables
+var firebaseUrl = "https://yourapp.firebaseio.com";
+var firebaseToken = "yourtoken";
+var esPath = "https://your-elasticpath-path"; //bonsai.io has a free option
 function authHandler(error, authData) {
     if (error) {
         console.log("Login Failed!", error);
