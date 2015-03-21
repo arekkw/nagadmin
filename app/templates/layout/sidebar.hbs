@@ -22,13 +22,15 @@
 						View Organisations
 					</a>
 				{{/link-to}}
-				{{#link-to 'organizations.new' tagName='li'}}
-					<a href="#">
-						<i class="menu-icon fa fa-caret-right"></i>
-						<i class="ace-icon fa fa-plus"></i>
-						Add Organisation
-					</a>
-				{{/link-to}}
+				{{#if content.isOrgAdmin}}
+					{{#link-to 'organizations.new' tagName='li'}}
+						<a href="#">
+							<i class="menu-icon fa fa-caret-right"></i>
+							<i class="ace-icon fa fa-plus"></i>
+							Add Organisation
+						</a>
+					{{/link-to}}
+				{{/if}}
 			</ul>
 		</li>
 
