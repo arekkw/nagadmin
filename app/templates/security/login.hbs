@@ -1,0 +1,30 @@
+{{#widget-box classNames="login-box visible no-border" id="login-box"}}
+	{{#widget-box-body}}
+		<div class="widget-main">
+			{{#if hasError}}
+				<div class="alert alert-danger">{{errorMessage}}</div>
+			{{/if}}
+		
+			<h4 class="header blue lighter bigger">
+				<i class="ace-icon fa fa-lock green"></i>
+				Please Log In {{#unless view.isProd}}<strong class="red">{{view.envDisplay}}</strong>{{/unless}}
+			</h4>
+			<div class="space-8"></div>
+			<div class="center">
+				<a class="block" {{action 'googleAuth'}} href="#">
+					<img src="/assets/Red-signin_Long_base_44dp.png" alt="Google sign-in button" style="width:250px"/>
+				</a>
+				{{#if allowRememberMe}}
+				<form class="form-horizontal">
+					<label class="middle">
+						{{input type="checkbox" checked=remember class="ace"}}
+						<span class="lbl"> Remember me 7 days</span>
+					</label>
+				</form>
+				{{/if}}
+				<small>(You may be temporarily redirected to Google for authentication.)</small>
+			</div>
+			<div class="space-8"></div>
+		</div>
+	{{/widget-box-body}}
+{{/widget-box}}

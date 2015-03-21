@@ -1,0 +1,50 @@
+<div id="org-edit">
+	<ul class="steps">
+		{{#link-to 'organizations.edit.profile' tagName='li' data-step='1'}}	
+			<span class="step">1</span>
+			<span class="title">Profile</span>
+		{{/link-to}}
+	
+		{{#link-to 'organizations.edit.reg' tagName='li' data-step='2'}}
+			<span class="step">2</span>
+			<span class="title">Registration</span>
+		{{/link-to}}
+		
+		{{#link-to 'organizations.edit.doc' tagName='li' data-step='3'}}
+			<span class="step">3</span>
+			<span class="title">Documents</span>
+		{{/link-to}}
+		
+		{{#link-to 'organizations.edit.income' tagName='li' data-step='4'}}
+			<span class="step">4</span>
+			<span class="title">Income</span>
+		{{/link-to}}
+		
+		{{#link-to 'organizations.edit.infra' tagName='li' data-step='5'}}
+			<span class="step">5</span>
+			<span class="title">Infrastructure</span>
+		{{/link-to}}
+	
+	  	{{#link-to 'organizations.edit.prog' tagName='li' data-step='6'}}
+			<span class="step">6</span>
+			<span class="title">Programme</span>
+		{{/link-to}}
+		
+		{{#link-to 'organizations.edit.gallery' tagName='li' data-step='7'}}
+			<span class="step">7</span>
+			<span class="title">Gallery</span>
+		{{/link-to}}
+	</ul>
+	<hr class="no-margin-bottom">
+	<div class="col-xs-12 center">
+		<div class="alert alert-block alert-success no-margin hide">
+			<i class="icon-ok green"></i>
+			{{successMsg}}
+		</div>
+		<div class="alert alert-block alert-danger no-margin hide">
+			<i class="icon-remove"></i>
+			{{errorMsg}}
+		</div>
+	</div>
+	{{outlet}}
+</div>

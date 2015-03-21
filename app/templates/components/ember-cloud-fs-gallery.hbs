@@ -1,0 +1,27 @@
+{{#unless isLoading}}
+    {{#if accessToken}}
+        <p><a href='#' {{action 'refresh'}} id="refreshGallery">Refresh</a></p>
+        {{#unless noFiles}}
+        <ul class="ace-thumbnails clearfix">
+            {{#each file in files}}
+            <li>
+                <a {{bind-attr href='file.url'}} data-rel="colorbox">
+					<img width="150" alt="150x150" {{bind-attr src='file.url'}} />
+				</a>
+				<div class="tools tools-right">
+					<a href="#" {{action 'deleteFile' file.name}}>
+						<i class="ace-icon fa fa-times red"></i> 
+					</a>
+				</div>
+            </li>
+            {{/each}}
+        </ul>
+        {{else}}
+            <em>No pictures have been uploaded.</em>
+        {{/unless}}
+    {{else}}
+        <strong>In order to use cloud storage, you must authenticate with a Google account.</strong>
+    {{/if}}
+{{else}}
+    <h1><span class="ace-icon fa fa-refresh fa-spin"></span> Loading...</h1>
+{{/unless}}

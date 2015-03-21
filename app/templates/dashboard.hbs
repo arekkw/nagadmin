@@ -1,0 +1,21 @@
+{{partial "layout/topbar"}}
+
+<div class="main-container" id="main-container">
+	<div class="main-container-inner">
+		{{partial "layout/sidebar"}}
+
+		<div class="main-content">
+			{{partial "layout/breadcrumbs"}}
+
+			<div class="page-content">
+				<div class="row">
+					<div class="col-xs-12">
+						{{outlet}}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	{{partial "layout/footer"}}
+</div>

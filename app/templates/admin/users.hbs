@@ -1,0 +1,76 @@
+<div class="users">
+	<div class="user-list">
+		<div class="row">
+		{{#if isUserAdmin}}
+			<div class="col-xs-2">
+				{{#link-to 'admin.addUser'}}
+				<button class='btn btn-success btn-sm'>
+					<i class="icon-pencil align-top"></i>
+					Create New User
+				</button>
+				{{/link-to}}
+			</div>
+		{{/if}}
+			<div class="col-xs-9">
+				<div class="alert alert-block alert-success no-margin hide">
+					<i class="icon-ok green"></i>
+					{{successMsg}}
+				</div>
+				<div class="alert alert-block alert-danger no-margin hide">
+					<i class="icon-remove"></i>
+					{{errorMsg}}
+				</div>
+			</div>
+		</div>
+		<div class="space"></div>
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="table-responsive">
+					<table id="users-table" class="table table-striped table-bordered table-hover">
+						<thead>
+							<tr>
+								<th>Email</th>
+								<th>First</th>
+								<th class="hidden-480">Last</th>
+								<th class="hidden-480">Account Created</th>
+								<th class="hidden-480">Last Login</th>
+								<th class="hidden-480">Role</th>
+							{{#if isUserAdmin}}
+								<th></th>
+							{{/if}}
+							</tr>
+						</thead>
+
+						<tbody>
+						{{#each user in model}}
+							{{#if user.email}}
+							<tr>
+							    <td>{{user.email}}</td>
+								<td>{{user.firstName}}</td>
+								<td class="hidden-480">{{user.lastName}}</td>
+								<td class="hidden-480">{{formatted-date user.createDate 'LL'}}</td>
+								<td class="hidden-480">{{formatted-date user.lastLoginDate 'fromDate'}}</td>
+								<td class="hidden-480">{{user.rolesToString}}</td>
+							{{#if controller.isUserAdmin}}
+								<td>
+									<div class="btn-group">
+									    <button class="btn btn-xs btn-info" {{action 'showModal' 'admin.editUserModal' this}}>
+											<i class="ace-icon fa fa-pencil bigger-120"></i>
+										</button>
+										
+										<button class="btn btn-xs btn-danger" {{action 'showModal' 'admin.confirmDeleteUserModal' this}}>
+											<i class="ace-icon fa fa-trash-o bigger-120"></i>
+										</button>
+									</div>
+								</td>
+							{{/if}}
+							</tr>
+							{{/if}}
+						{{/each}}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

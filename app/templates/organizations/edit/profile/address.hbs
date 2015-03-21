@@ -1,0 +1,33 @@
+<div class="widget-box">
+	<div class="widget-header">
+		<h4 class="smaller">
+			Address
+			<small></small>
+		</h4>
+	</div>
+
+	<div class="widget-body">
+		<div class="widget-main">
+			<form class="form-horizontal" id="validation-form" method="get" novalidate="novalidate">
+                <div class="form-group">
+                    <label class="control-label col-xs-3 col-sm-3 no-padding-right" for="address1">Address 1:</label>
+                    <div class="col-xs-9 col-sm-9">
+                        <div class="clearfix">
+                            {{input type="text" id="address1" class="col-xs-12" value=model.address.address1}}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-3 col-sm-3 no-padding-right" for="address2">Address 2:</label>
+            
+                    <div class="col-xs-9 col-sm-9">
+                        <div class="clearfix">
+                            {{input type="text" id="address2" class="col-xs-12" value=model.address.address2}}
+                        </div>
+                    </div>
+                </div>
+                {{address-select addressModel=model.address hideLabels=false defaultProvince="KZ"}}
+            </form>
+		</div>
+	</div>
+</div>

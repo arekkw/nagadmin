@@ -1,0 +1,81 @@
+<div class="widget-box">
+	<div class="widget-header">
+		<h4 class="smaller">
+			Contact
+			<small></small>
+		</h4>
+	</div>
+
+	<div class="widget-body">
+		<div class="widget-main">
+		    <div class="row">
+    			<div class="col-lg-3 col-sm-3 col-xs-3">
+                    {{#if showContactUploadComp}}
+                    <div class="contactPicUpload">
+                        {{ember-uploader accessToken=accessToken directory=profilePicsDir uploadLogBinding='controller.contactUploadedLog' fileNameOverride='contactPic' dropboxMsg='Drag image here or click to set new contact picture' hideOnDrop=true showLogs=false compId='contactPic' }}
+                    </div>
+                    {{else}}
+                    <div class="contactPicUpload center">
+                        <img {{bind-attr src=contactPicUrl}} class="img-responsive">
+                        <div>
+                            <button {{action 'editContactPic'}} class="btn btn-xs btn-link">(Edit)</button>
+                        </div>
+                    </div>
+                    {{/if}}
+                </div>
+                <div class="col-lg-9 col-sm-9 col-xs-9">
+                    <form class="form-horizontal" id="validation-form" method="get" novalidate="novalidate">
+                        <div class="form-group">
+                            <label class="control-label col-xs-3 col-sm-3 no-padding-right" for="contactName">Name:</label>
+                            <div class="col-xs-12 col-sm-9">
+                                <div class="clearfix">
+                                    {{input type="text" id="contactName" class="col-xs-12" value=model.contact.name}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-3 col-sm-3 no-padding-right" for="status">Type:</label>
+                            <div class="col-xs-12 col-sm-9">
+                                <div class="clearfix">
+                                    {{view "select" class="form-control" content=contactTypes value=model.contact.type.content optionTitlePath="content.desc" optionLabelPath="content.display" optionValuePath="content" prompt="Select Type"}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-3 col-sm-3 no-padding-right" for="contactEmail">Email:</label>
+                            <div class="col-xs-12 col-sm-9">
+                                <div class="clearfix">
+                                    {{input type="text" id="contactEmail" class="col-xs-12" value=model.contact.email}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-3 col-sm-3 no-padding-right" for="contactCell">Phone (cell):</label>
+                            <div class="col-xs-12 col-sm-9">
+                                <div class="clearfix">
+                                    {{input type="text" id="contactCell" class="col-xs-12" value=model.contact.cellNumber}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-3 col-sm-3 no-padding-right" for="contactLandline">Phone (landline):</label>
+                            <div class="col-xs-12 col-sm-9">
+                                <div class="clearfix">
+                                    {{input type="text" id="contactLandline" class="col-xs-12" value=model.contact.landlineNumber}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-3 col-sm-3 no-padding-right" for="contactfax">Fax:</label>
+                            <div class="col-xs-12 col-sm-9">
+                                <div class="clearfix">
+                                    {{input type="text" id="contactfax" class="col-xs-12" value=model.contact.faxNumber}}
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+		</div>
+	</div>
+</div>

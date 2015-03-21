@@ -1,0 +1,25 @@
+{{#unless isLoading}}
+    {{#if accessToken}}
+        <small>(<a href='#' {{action 'refresh'}}>Refresh</a>)</small>
+        {{#unless noFiles}}
+        <strong>{{prefix}}</strong> {{#if parentPrefix}}(<a href="#" {{action 'loadPrefix' parentPrefix}}>Up</a>){{/if}}
+        <ul>
+            {{#each folder in folders}}
+            <li><strong><a href="#" {{action 'loadPrefix' folder}}>{{folder}}</a></strong></li>
+            {{/each}}
+            
+            {{#each file in files}}
+            <li><a target="_blank" {{bind-attr href='file.url'}}>{{file.name}}</a> - {{file.contentType}} ({{file.size}})
+                <a href="#" {{action 'deleteFile' file.name}}><i class="ace-icon fa fa-times bigger-110 red"></i></a>
+            </li>
+            {{/each}}
+        </ul>
+        {{else}}
+            <em>No files have been uploaded.</em>
+        {{/unless}}
+    {{else}}
+        <strong>In order to use cloud storage, you must authenticate with a Google account.</strong>
+    {{/if}}
+{{else}}
+    <h1><span class="ace-icon fa fa-refresh fa-spin"></span> Loading...</h1>
+{{/unless}}
