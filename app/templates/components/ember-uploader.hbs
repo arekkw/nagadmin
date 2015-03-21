@@ -1,0 +1,70 @@
+{{#if accessToken}}
+  <div class="col-uploads clearfix">
+    <div {{bind-attr class=":clearfix :form-group showDropZoneHighlight:highlight hideDropZone:hidden :dropzone"}} {{bind-attr id=compId}}>
+      <div class="col-xs-12 no-padding">
+        <label class="ace-file-input ace-file-multiple">
+          <input multiple="" type="file"><span class="ace-file-container dropzone-input" {{bind-attr data-title=dropboxMsg}}>
+          <span class="ace-file-name" data-title="No File ...">
+            <i class=" ace-icon ace-icon fa fa-cloud-upload"></i>
+          </span></span>
+          <a class="remove" href="#"><i class=" ace-icon fa fa-times"></i></a>
+        </label>
+      </div>
+    </div>
+    <div class="space-6"></div>
+    <div class="row">
+      <div class="col-xs-12 center">
+        <button {{action "uploadAll"}} {{bind-attr class=":btn :btn-primary :btn-xs hasUploads:visible:hidden" }}>
+          {{#if hasOne}}Upload{{else}}Upload All{{/if}}
+        </button>
+        <button {{action "removeCompleted"}} {{bind-attr class=":btn :btn-default :btn-remove-completed :btn-xs hasCompleted:visible:hidden" }}>Remove Completed</button>
+      </div>
+    </div>
+    
+    {{#each uploadFile in uploadFiles}}
+    <div class="row upload-file-block">
+      <div class="col-xs-2">
+        {{#if uploadFile.isDisplayableImage}} {{!-- isDisplayableImage --}}
+        <img class="image-preview" {{bind-attr src=uploadFile.base64Image}} /> 
+        {{else}}
+        <img class="image-preview" src="assets/image-unknown.gif">
+        {{/if}} {{!-- isDisplayableImage --}}
+      </div>
+      <div class="col-xs-10">
+        <p>{{uploadFile.prefix}}/{{uploadFile.name}} ({{uploadFile.size}})</p>
+        {{#if uploadFile.didUpload}} {{!-- didUpload --}}
+        <div class="alert alert-block alert-success">
+          <button {{action "removeFile" uploadFile}} type="button" class="close" data-dismiss="alert">
+            <i class="ace-icon fa fa-times"></i>
+          </button>
+          <i class="ace-icon fa fa-check green"></i>
+          Success
+        </div>
+        {{else}}
+          <a {{action "uploadFile" uploadFile}}>Upload</a> | <a {{action "removeFile" uploadFile}}>Remove file</a> 
+          {{#if uploadFile.showProgressBar}} {{!-- showProgressBar --}}
+          <div class="progress progress-striped">
+            <div class="progress-bar progress-bar-info" {{bind-attr style="uploadFile.progressStyle" }}></div>
+          </div>
+          {{/if}} {{!-- showProgressBar --}}
+        {{/if}} {{!-- didUpload --}}
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  {{#if showLogs}} {{!-- showLogs --}}
+  <div class="col-log clearfix">
+    <div class="well">
+      <label>Upload Logs</label>
+      <ul>
+        {{#each url in uploadedLog}}
+        <li><a {{bind-attr href="url" }} target="_blank">{{url}}</a>
+        </li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+  {{/if}} {{!-- showlogs --}}
+{{else}} {{!-- accessToken --}}
+<strong>In order to use cloud storage, you must authenticate with a Google account.</strong> 
+{{/if}} {{!-- accessToken --}}

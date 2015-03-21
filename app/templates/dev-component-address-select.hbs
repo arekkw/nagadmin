@@ -1,0 +1,15 @@
+<h2>Address Select Component</h2>
+<p>Enables the user to select only the appropriate districts, metros, municipalities, wards for the given selection.</p>
+<form class="form-horizontal" id="validation-form" method="get" novalidate="novalidate" style="width:700px">
+    <div>
+        <h4>Default</h4>
+        <pre>address-select addressModel=model.address1</pre>
+        {{address-select addressModel=model.address1}}
+    </div>
+
+    <div>
+        <h4>Defaulted Eastern Cape (EC)</h4>
+        <pre>address-select addressModel=model.address2 defaultProvince="EC" id="ecdefault"</pre>
+        {{address-select addressModel=model.address2 defaultProvince="EC" id="ecdefault"}}
+    </div>
+</form>

@@ -1,0 +1,13 @@
+<div class="col-xs-12 no-padding">
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            {{partial "organizations/edit/profile/profile"}}
+            {{partial "organizations/edit/profile/contact"}}
+        </div>
+        <div class="col-md-6 col-sm-12">
+            {{partial "organizations/edit/profile/address"}}
+        </div>
+    </div>
+    <button {{action 'save'}}>Save</button>
+    <button {{action 'saveNext'}}>Next</button>
+</div>

@@ -1,0 +1,98 @@
+<div class="sidebar responsive" id="sidebar">
+	<ul class="nav nav-list">
+		{{#link-to 'dashboard.index' tagName='li' class='hover'}}
+			<a href="#">
+				<i class="menu-icon fa fa-dashboard"></i>
+				<span class="menu-text"> Home </span>
+			</a>
+			<b class="arrow"></b>
+		{{/link-to}}
+		<li class="hover">
+			<a href="#" class="dropdown-toggle">
+				<i class="menu-icon fa fa-sitemap"></i>
+				<span class="menu-text"> Organisations </span>
+				<b class="arrow fa fa-angle-down"></b>
+			</a>
+			<b class="arrow"></b>
+			<ul class="submenu">
+				{{#link-to 'organizations' tagName='li'}}
+					<a href="#">
+						<i class="menu-icon fa fa-caret-right"></i>
+						<i class="ace-icon fa fa-eye"></i>
+						View Organisations
+					</a>
+				{{/link-to}}
+				{{#link-to 'organizations.new' tagName='li'}}
+					<a href="#">
+						<i class="menu-icon fa fa-caret-right"></i>
+						<i class="ace-icon fa fa-plus"></i>
+						Add Organisation
+					</a>
+				{{/link-to}}
+			</ul>
+		</li>
+
+		{{#link-to 'contacts' tagName='li' class='hover'}}
+			<a href="#">
+				<i class="menu-icon fa fa-book"></i>
+				<span class="menu-text"> Contacts </span>
+			</a>
+			<b class="arrow"></b>
+		{{/link-to}}
+
+		<li class="hover">
+			<a href="#" class="dropdown-toggle">
+				<i class="menu-icon fa fa-cogs"></i>
+				<span class="menu-text"> Administration </span>
+				<b class="arrow fa fa-angle-right"></b>
+			</a>
+			<b class="arrow"></b>
+			<ul class="submenu">
+				{{#link-to 'admin.users' tagName='li'}}
+					<a href="#">
+						<i class="menu-icon fa fa-caret-right"></i>
+						<i class="ace-icon fa fa-user"></i>
+						Users
+					</a>
+				{{/link-to}}
+			</ul>
+		</li>
+		{{#unless view.isProd}}
+		<li class="hover">
+			<a href="#" class="dropdown-toggle">
+				<i class="menu-icon fa fa-wrench red"></i>
+				<span class="menu-text red"> Development Stuff</span>
+				<b class="arrow fa fa-angle-right"></b>
+			</a>
+			<b class="arrow"></b>
+			<ul class="submenu">
+				{{#link-to 'devComponentUpload' tagName='li'}}
+					<a href="#">
+						<i class="menu-icon fa fa-caret-right"></i>
+						<i class="ace-icon fa fa-puzzle-piece red"></i>
+						<span class="menu-text red">Uploader</span>
+					</a>
+				{{/link-to}}
+				{{#link-to 'devComponentModal' tagName='li'}}
+					<a href="#">
+						<i class="menu-icon fa fa-caret-right"></i>
+						<i class="ace-icon fa fa-puzzle-piece red"></i>
+						<span class="menu-text red">Modal</span>
+					</a>
+				{{/link-to}}
+				{{#link-to 'dev-component-address-select' tagName='li'}}
+					<a href="#">
+						<i class="menu-icon fa fa-caret-right"></i>
+						<i class="ace-icon fa fa-puzzle-piece red"></i>
+						<span class="menu-text red">Address Select</span>
+					</a>
+				{{/link-to}}
+			</ul>
+		</li>
+		{{/unless}}
+	</ul>
+
+	<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+		<i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+	</div>
+</div>

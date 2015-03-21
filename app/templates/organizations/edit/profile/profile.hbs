@@ -1,0 +1,139 @@
+<div class="widget-box">
+	<div class="widget-header">
+		<h4 class="smaller">
+			Profile
+			<small></small>
+		</h4>
+	</div>
+	<div class="widget-body">
+		<div class="widget-main">
+		    <div class="row">
+                <div class="col-md-3 col-sm-3 col-xs-3">
+                    {{#if showOrgUploadComp}}
+                    <div class="mainOrgPicUpload">
+                        {{ember-uploader accessToken=accessToken directory=profilePicsDir uploadLogBinding='controller.uploadedLog' fileNameOverride='orgPic' dropboxMsg='Drag image here or click to set new profile picture' hideOnDrop=true showLogs=false compId='orgPic' cacheable=true}}
+                    </div>
+                    {{else}}
+                    <div class="mainOrgPic center">
+                        <img {{bind-attr src=orgProfilePicUrl}} class="img-responsive">
+                        <div>
+                            <button {{action 'editProfilePic'}} class="btn btn-xs btn-link">(Edit)</button>
+                        </div>
+                    </div>
+                    {{/if}}
+                </div>
+                <div class="col-lg-9 col-sm-9 col-xs-9">
+                    <form class="form-horizontal" id="validation-form" method="get" novalidate="novalidate">
+                        <div class="form-group">
+                            <label class="control-label col-xs-3 col-sm-3 no-padding-right" for="orgName">Name:</label>
+                            <div class="col-xs-12 col-sm-9">
+                                <div class="clearfix">
+                                    {{input type="text" id="orgName" class="col-xs-12 col-sm-12" value=model.orgName}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-3 col-sm-3 no-padding-right" for="status">Type(s):</label>
+                            <div class="col-xs-12 col-sm-9">
+                                <div class="clearfix">
+                                    {{view "select" class="form-control" content=orgTypes selection=model.orgTypes multiple="true" optionTitlePath="content.desc" optionLabelPath="content.display" optionValuePath="content.id"}}
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <form class="form-horizontal" id="validation-form" method="get" novalidate="novalidate">
+                        <div class="row form-group">
+                            <div class="col-xs-6">
+                                <label class="control-label col-xs-6 no-padding-right" for="numChildren"># Children:</label>
+                                <div class="col-xs-6">
+                                    <div class="clearfix">
+                                        {{input type="text" id="numChildren" class="col-xs-12" value=model.numChildren}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <label class="control-label col-xs-6 no-padding-right" for="numStaff"># Staff:</label>
+                                <div class="col-xs-6">
+                                    <div class="clearfix">
+                                        {{input type="text" id="numStaff" class="col-xs-12" value=model.numStaff}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-3 col-sm-3 no-padding-right" for="daysOfOp">Days of Operation:</label>
+                            <div class="col-xs-9">
+                                <div class="clearfix">
+                                    {{view "select" class="form-control" content=daysOfWeek selection=model.daysOfOp multiple="true" id="daysOfOp" optionTitlePath="content.d" optionLabelPath="content.d" optionValuePath="content.d"}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-3 col-sm-3 no-padding-right" for="hoursOfOp">Hours of Operation:</label>
+                            <div class="col-xs-9">
+                                <div class="clearfix">
+                                    {{input type="text" id="hoursOfOp" class="col-xs-12" value=model.hoursOfOp}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-3 col-sm-3 no-padding-right" for="establishedDate">Year Started:</label>
+                            <div class="col-xs-9">
+                                <div class="input-group">
+                                    {{input type="text" id="establishedDate-date-picker" class="form-control date-picker" value=model.establishedDate}}
+                                    <span class="input-group-addon">
+            							<i class="fa fa-calendar bigger-110"></i>
+            						</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <span class="col-xs-4 col-sm-4">
+            					<label class="middle">
+            					    {{input type="checkbox" name="privateOrg" checked=model.privateOrg class="ace input-lg"}}
+            						<span class="lbl"> Private</span>
+                                </label>
+                            </span>
+                            <span class="col-xs-4 col-sm-4">
+            					<label class="middle">
+            					    {{input type="checkbox" name="nonProfitOrg" checked=model.nonProfitOrg class="ace input-lg"}}
+            						<span class="lbl"> Non-Profit</span>
+                                </label>
+                            </span>
+                            <span class="col-xs-4 col-sm-4">
+            				    <label class="middle">
+            				        {{input type="checkbox" name="urban" checked=model.urban class="ace input-lg"}}
+            					    <span class="lbl"> Urban</span>
+                                </label>
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <span class="col-xs-4 col-sm-4">
+            					<label class="middle">
+            					    {{input type="checkbox" name="openHolidays" checked=model.openHolidays class="ace input-lg"}}
+            						<span class="lbl"> Open Holidays</span>
+                                </label>
+                            </span>
+                            <span class="col-xs-4 col-sm-4">
+            					<label class="middle">
+            					    {{input type="checkbox" name="mealsProvided" checked=model.mealsProvided class="ace input-lg"}}
+            						<span class="lbl"> Meals Provided</span>
+                                </label>
+                            </span>
+                            <span class="col-xs-4 col-sm-4">
+            				    <label class="middle">
+            				        {{input type="checkbox" name="chargesFee" checked=model.chargesFee class="ace input-lg"}}
+            					    <span class="lbl"> Fees</span>
+                                </label>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+		</div>
+	</div>
+</div>

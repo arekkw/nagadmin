@@ -1,0 +1,11 @@
+<div class="tabbable">
+	<ul class="nav nav-tabs">
+		{{#each tab in tabs}}
+		<li {{bind-attr class="active"}}><a {{action "changeTab" tab.index}}>{{tab.title}}</a></li>
+		{{/each}}
+	</ul>
+	<div class="tab-content no-padding">
+		{{yield}}
+	</div>
+	<div style="clear:both"></div>
+</div>

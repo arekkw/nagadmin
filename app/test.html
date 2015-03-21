@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style type="text/css">
+      html, body, #map_canvas { height: 100%; margin: 0;}
+    </style>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="topojson.js"></script>
+    <script src="GeoJSON.js"></script>
+    <script>
+
+      $(function() {
+            var mapOptions = {
+              center: new google.maps.LatLng(35, -105),
+              zoom: 4,
+              mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+
+            var map = new google.maps.Map(document.getElementById("map_canvas"),
+                mapOptions);
+
+          	$.getJSON('us_counties.json', function (data) {
+          	    var county_geojson = topojson.object(data, data.objects.counties),
+          		state_geojson = topojson.object(data, data.objects.states);
+    
+          	    var style = {
+              		strokeColor: "#FFFF00",
+              		strokeWeight: 1,
+              		strokeOpacity: 0.45,
+              		fillOpacity: 0.1,
+          	    };
+          	    var counties = new GeoJSON(county_geojson, style);
+    
+                      //restyle for states
+                      style.strokeWeight = 2;
+                      style.strokeColor = 'black';
+          	    var states = new GeoJSON(state_geojson, style);
+    
+                  addGeometries(counties);
+                  addGeometries(states);
+          	});
+
+            addGeometries = function(overlays, style){
+              $.each(overlays, function(i, overlay){
+                    if (!overlay.length) {
+    		            overlay.setMap(map);
+                    } else {
+                      // recurse for multigeoms
+    	              addGeometries(overlay)
+                    }
+              });
+            }
+      });
+      
+    </script>
+  </head>
+  <body>
+    <div id="map_canvas" style="width:90%; height:90%"></div>
+  </body>
+</html>

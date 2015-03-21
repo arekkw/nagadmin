@@ -1,0 +1,8 @@
+{{#ember-modal title='Test Modal' ok='save' close='removeModal'}}
+  <form {{action 'ok' on='submit' target=view}}>
+    <div class="form-group">
+      <label>Name</label>
+      {{input class="form-control" value=name}}
+    </div>
+  </form>
+{{/ember-modal}}

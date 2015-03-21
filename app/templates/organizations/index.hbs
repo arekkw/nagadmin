@@ -1,0 +1,75 @@
+<div id="organizations" class="col-xs-12">
+	<div class="row">
+	{{#if isOrgAdmin}}
+		<div class="col-xs-2">
+			{{#link-to 'organizations.new'}}
+			<button class='btn btn-success btn-sm'>
+				<i class="icon-pencil align-top"></i>
+				Add New Organization
+			</button>
+			{{/link-to}}
+		</div>
+	{{/if}}
+		<div class="col-xs-9">
+			<div class="alert alert-block alert-success hide">
+				<i class="icon-ok green"></i>
+				{{successMsg}}
+			</div>
+			<div class="alert alert-block alert-danger hide">
+				<i class="icon-remove"></i>
+				{{errorMsg}}
+			</div>
+		</div>
+	</div>
+	<div class="col-xs-3 widget-box">
+		<div class="widget-header widget-header-flat">
+			<h4 class="widget-title">Filters</h4>
+		</div>
+		<div class="widget-body">
+			<div class="widget-main no-padding">
+				<form class="form-horizontal">
+					
+					<fieldset>
+						{{address-select addressModel=filterAddress hideLabels=true defaultProvince="KZ"}}
+						<div class="checkbox">
+							<label>
+								{{input type="checkbox" name="urban" checked=filterUrban class="ace input-lg"}}
+								<span class="lbl"> Urban</span>
+							</label>
+							<label>
+								{{input type="checkbox" name="urban" checked=filterRural class="ace input-lg"}}
+								<span class="lbl"> Rural</span>
+							</label>
+						</div>
+						<div class="space-8"></div>
+						<div>
+							{{view "select" class="form-control" content=orgTypes selection=filterOrgTypes multiple="true" optionTitlePath="content.desc" optionLabelPath="content.display" optionValuePath="content.id"}}
+						</div>
+					</fieldset>
+
+					<div class="form-actions center">
+						<button type="button" class="btn btn-sm">
+							Reset
+							<i class="ace-icon fa fa-repeat icon-on-right bigger-110"></i>
+						</button>
+						<button type="button" class="btn btn-sm btn-info">
+							Apply
+							<i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	{{#tab-container classNames="col-xs-9"}}
+		{{#tab-pane title="Map"}}
+			{{render "organizations.map" model}}
+		{{/tab-pane}}
+		{{#tab-pane title="List"}}
+			{{render "organizations.list" model}}
+		{{/tab-pane}}
+		{{#tab-pane title="Statistics"}}
+			{{render "organizations.stats" model}}
+		{{/tab-pane}}
+	{{/tab-container}}
+</div>

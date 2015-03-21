@@ -1,0 +1,24 @@
+<div class="col-xs-12 no-padding">
+    <div class="row">
+        <div class="widget-box">
+        	<div class="widget-header">
+        		<h4 class="smaller">
+        			Gallery
+        			<small></small>
+        		</h4>
+        	</div>
+        	<div class="widget-body">
+        		<div class="widget-main">
+                    <div class="row">
+                		<div class="col-md-9">
+                		    {{ember-cloud-fs-gallery accessToken=accessToken prefix=galleryPicsDir}}
+                		</div>
+                		<div class="col-md-3">
+                			{{ember-uploader accessToken=accessToken directory=galleryPicsDir uploadLogBinding='controller.galleryLog' uploadsCompleteBinding='controller.uploadsComplete' hideOnDrop=true showLogs=false compId='galleryPics' cacheable=true dropboxMsg='Drag new gallery picture here' removeCompleted=true}}
+                		</div>
+                	</div>
+        		</div>
+        	</div>
+        </div>
+	</div>
+</div>

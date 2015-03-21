@@ -1,0 +1,9 @@
+{
+  "firebase": "nag-admin-dev",
+  "public": "dist",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}

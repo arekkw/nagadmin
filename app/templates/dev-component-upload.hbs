@@ -1,0 +1,17 @@
+<h2>Ember Uploader Component</h2>
+<h3>Directory: {{directory}}</h3>
+<div style="width:500px">
+{{ember-uploader 
+    accessToken=model.accessToken 
+    directory=directory 
+    showLogs=false
+    dropboxMsg='CUSTOM Msg - drop files here'
+    hideOnDrop=true
+    fileNameOverride='testUploadComponentFile'
+    }}
+</div>
+
+<h2>Uploaded files</h2>
+<div>
+{{ember-cloud-fs accessToken=model.accessToken}}
+</div>

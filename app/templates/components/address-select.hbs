@@ -1,0 +1,60 @@
+<div class="form-group">
+    <label {{bind-attr class=":control-label :col-xs-3 :col-sm-3 :no-padding-right hideLabels:hidden"}} for="provinceSelect">Province:</label>
+    <div {{bind-attr class="hideLabels:col-xs-12:col-xs-9 hideLabels:col-sm-12:col-xs-9"}}>
+        <div class="clearfix">
+            {{view "select" class="form-control" content=provinceList selection=selectedProvince 
+                optionLabelPath="content.display" optionValuePath="content" prompt="Select a Province"}}
+        </div>
+    </div>
+</div>
+{{#if addressModel.province}}
+    {{#if showDist}}
+        <div class="form-group">
+            <label {{bind-attr class=":control-label :col-xs-3 :col-sm-3 :no-padding-right hideLabels:hidden"}} for="districtSelect">District:</label>
+            <div {{bind-attr class="hideLabels:col-xs-12:col-xs-9 hideLabels:col-sm-12:col-xs-9"}}>
+                <div class="clearfix">
+                    {{view "select" class="form-control" contentBinding="districtList" 
+                        selectionBinding="selectedDistrict" optionLabelPath="content.display" 
+                        optionValuePath="content.id" prompt="Select a District"}}
+                </div>
+            </div>
+        </div>
+    {{/if}}
+    {{#if showMetro}}
+        <div class="form-group">
+            <label {{bind-attr class=":control-label :col-xs-3 :col-sm-3 :no-padding-right hideLabels:hidden"}} for="metroSelect">Metro:</label>
+            <div {{bind-attr class="hideLabels:col-xs-12:col-xs-9 hideLabels:col-sm-12:col-xs-9"}}>
+                <div class="clearfix">
+                    {{view "select" class="form-control" contentBinding="metroList" 
+                        selectionBinding="selectedMetro" optionLabelPath="content.display" 
+                        optionValuePath="content.id" prompt="Select a Metro"}}
+                </div>
+            </div>
+        </div>
+    {{/if}}
+    
+     {{#if showMuni}}
+        <div class="form-group">
+            <label {{bind-attr class=":control-label :col-xs-3 :col-sm-3 :no-padding-right hideLabels:hidden"}} for="muniSelect">Municipality:</label>
+            <div {{bind-attr class="hideLabels:col-xs-12:col-xs-9 hideLabels:col-sm-12:col-xs-9"}}>
+                <div class="clearfix">
+                    {{view "select" class="form-control" contentBinding="muniList" 
+                        selectionBinding="selectedMuni" optionLabelPath="content.display" 
+                        optionValuePath="content.id" prompt="Select a Municipality"}}
+                </div>
+            </div>
+        </div>
+    {{/if}}
+    {{#if showWard}}
+        <div class="form-group">
+            <label {{bind-attr class=":control-label :col-xs-3 :col-sm-3 :no-padding-right hideLabels:hidden"}} for="wardSelect">Ward:</label>
+            <div {{bind-attr class="hideLabels:col-xs-12:col-xs-9 hideLabels:col-sm-12:col-xs-9"}}>
+                <div class="clearfix">
+                     {{view "select" class="form-control" contentBinding="wardList" 
+                        selectionBinding="selectedWard" optionLabelPath="content.display" 
+                        optionValuePath="content.id" prompt="Select a Ward"}}
+                </div>
+            </div>
+        </div>
+    {{/if}}
+{{/if}}
