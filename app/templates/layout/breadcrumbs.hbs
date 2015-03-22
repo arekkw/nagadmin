@@ -2,8 +2,12 @@
 	{{bread-crumbs}}
 	<div class="nav-search" id="nav-search">
 		<form class="form-search">
-			{{#nag-es-autocomplete options=codes selectedValue=model.code placeHolderText="Find a thing" noMesssagePlaceHolderText="No things are found" as |result|}}
-			  <p><b>{{result.code}}</b></p>
+			{{#nag-es-autocomplete selectedValue=model placeHolderText="Search..." valueProperty="" noMesssagePlaceHolderText="No results" as |result|}}
+			  {{#if reseult.name}}
+				  <p><b>{{result.name}}</b> <small>({{result.cellNumber}})</small></p>
+			  {{else}}
+				<p><b>{{result.orgName}}</b> <small>({{result.displayOrgTypes}})</small></p>
+			  {{/if}}
 			{{/nag-es-autocomplete}}
 		</form>
 	</div>
