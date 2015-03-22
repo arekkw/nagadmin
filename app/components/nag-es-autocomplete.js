@@ -19,6 +19,7 @@ export default AutoComplete.extend({
                 "text" : inputVal,
                 "completion" : {
                     "field" : "suggest",
+                    "size" : 5,
                     "fuzzy" : {
                         "fuzziness" : 2
                     }
