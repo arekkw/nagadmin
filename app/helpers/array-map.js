@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export function arrayMap(_array) {
     var map = Ember.$.map(_array, function(el, key) { 
-        if(!Em.get(el, 'id')){
+        if(!Ember.get(el, 'id')){
             el.id = key;
         }
         return el; 

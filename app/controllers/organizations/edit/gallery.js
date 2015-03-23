@@ -14,9 +14,6 @@ export default Ember.Controller.extend(Ember.Evented, {
 	},
 	
 	_galleryLog: function(){
-		var logs = this.get('galleryLog');
-		var gallery = this.get('model');
-		// refresh the 
 		Ember.$('#refreshGallery').click();
 	}.observes('uploadsComplete'),
 	
