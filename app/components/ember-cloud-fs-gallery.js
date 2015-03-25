@@ -4,13 +4,13 @@ import EmberCloudFS from 'nag-admin/components/ember-cloud-fs';
 export default EmberCloudFS.extend({
 	didInsertElement : function(){
 	    this._super();
-	    Ember.run.later(this, this.initColorBox, 700); //hack. Ideas?
+	    Ember.run.later(this, this.initColorBox, 1000); //hack. Ideas?
 	},
 	
 	actions: {
         refresh: function(){
             this.listFiles(this.get('prefix'));
-            Ember.run.later(this, this.initColorBox, 700); //hack. Ideas?
+            Ember.run.later(this, this.initColorBox, 1000); //hack. Ideas?
         }
     },
 	

@@ -6,9 +6,9 @@
   <span class="tt-dropdown-menu" {{bind-attr style=visibility}}>
     <div class="tt-dataset-states">
       <span class="tt-suggestions">
-      {{#each result in suggestions}}
-        <div {{bind-attr class=":tt-suggestion result.highlight:tt-cursor"}} {{action "selectItem" result }}>
-          {{yield result}}
+      {{#each suggestion in suggestions}}
+        <div {{bind-attr class=":tt-suggestion suggestion.highlight:tt-cursor"}}>
+          {{yield suggestion}}
         </div>
       {{else}}
         <div class="message">

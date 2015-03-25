@@ -8,6 +8,14 @@ export default AutoComplete.extend({
         return this.get("options");
     }.property("options.@each"),
     
+    click: function(e){
+      console.log(e);
+    },
+    
+    didInsertElement: function(a, b){
+        console.log("insert");
+    },
+    
     loadMatches: function() {
         var self = this;
         var inputVal = this.get("inputVal");
@@ -54,5 +62,14 @@ export default AutoComplete.extend({
   
   optionsToMatch: function() {
       return this.get("options");
-  }.property("options.@each")
+  }.property("options.@each"),
+  
+  	actions: {
+	    selectSuggestion: function(item){
+	        this.sendAction('action', 'selectSuggestion', item);
+	    },
+	    selectItem: function(item){
+	        this.sendAction('action', 'selectSuggestion', item);
+	    }
+  	}
 });

@@ -2,11 +2,11 @@
 	{{bread-crumbs}}
 	<div class="nav-search" id="nav-search">
 		<form class="form-search">
-			{{#nag-es-autocomplete selectedValue=model placeHolderText="Search..." valueProperty="" noMesssagePlaceHolderText="No results" as |result|}}
-			  {{#if reseult.name}}
-				  <p><b>{{result.name}}</b> <small>({{result.cellNumber}})</small></p>
+			{{#nag-es-autocomplete selectedValue=result placeHolderText="Search..." valueProperty="" noMesssagePlaceHolderText="No results" as |result|}}
+			  {{#if result.name}}
+				  	<p {{action "selectItem" result }}><b>{{result.name}}</b> <small>({{result.cellNumber}})</small></p>
 			  {{else}}
-				<p><b>{{result.orgName}}</b> <small>({{result.displayOrgTypes}})</small></p>
+					<p {{action "selectItem" result }}><b>{{result.orgName}}</b> <small>({{result.displayOrgTypes}})</small></p>
 			  {{/if}}
 			{{/nag-es-autocomplete}}
 		</form>
