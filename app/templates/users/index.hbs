@@ -3,7 +3,7 @@
 		<div class="row">
 		{{#if isUserAdmin}}
 			<div class="col-xs-2">
-				{{#link-to 'admin.addUser'}}
+				{{#link-to 'users.add'}}
 				<button class='btn btn-success btn-sm'>
 					<i class="icon-pencil align-top"></i>
 					Create New User
@@ -11,16 +11,6 @@
 				{{/link-to}}
 			</div>
 		{{/if}}
-			<div class="col-xs-9">
-				<div class="alert alert-block alert-success no-margin hide">
-					<i class="icon-ok green"></i>
-					{{successMsg}}
-				</div>
-				<div class="alert alert-block alert-danger no-margin hide">
-					<i class="icon-remove"></i>
-					{{errorMsg}}
-				</div>
-			</div>
 		</div>
 		<div class="space"></div>
 		<div class="row">
@@ -54,11 +44,11 @@
 							{{#if controller.isUserAdmin}}
 								<td>
 									<div class="btn-group">
-									    <button class="btn btn-xs btn-info" {{action 'showModal' 'admin.editUserModal' this}}>
+									    <button class="btn btn-xs btn-info" {{action 'showModal' 'admin.editUserModal' user}}>
 											<i class="ace-icon fa fa-pencil bigger-120"></i>
 										</button>
 										
-										<button class="btn btn-xs btn-danger" {{action 'showModal' 'admin.confirmDeleteUserModal' this}}>
+										<button class="btn btn-xs btn-danger" {{action 'showModal' 'admin.confirmDeleteUserModal' user}}>
 											<i class="ace-icon fa fa-trash-o bigger-120"></i>
 										</button>
 									</div>

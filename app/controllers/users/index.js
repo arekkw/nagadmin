@@ -2,7 +2,6 @@ import Ember from 'ember';
 
 export default Ember.ArrayController.extend({
     needs: 'dashboard',
-    breadCrumb: "Users",
     successMsg: null,
     errorMsg: null,
     

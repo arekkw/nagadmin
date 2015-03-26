@@ -35,8 +35,10 @@ Router.map(function() {
 		});
 
 		this.resource('admin', function() {
-			this.route('users');
-			this.route('addUser');
+			this.resource('users', function() {
+				this.route('index');
+				this.route('add');
+			});
 		});
 
 		if (!config.isProd) {

@@ -2,7 +2,7 @@ import Ember from 'ember';
 import {fbEmailKeyScrubber} from 'nag-admin/helpers/fb-email-key-scrubber';
 
 export default Ember.Controller.extend({
-	needs: ['dashboard', 'admin/users'],
+	needs: ['dashboard'],
 	breadCrumb: "Add User",
 	selectedRoles: [],
 	roles: [],
@@ -34,9 +34,7 @@ export default Ember.Controller.extend({
 			});
 			user.replaceRoleRelations(this.get('selectedRoles'));
 			user.save();
-
-			this.set('controllers.admin/users.successMsg', 'User added successfully.');
-			this.transitionToRoute('admin.users');
+			this.transitionToRoute('users');
 		}
 	}
 });
