@@ -34,16 +34,13 @@ export default AutoComplete.extend({
                 self.set('options', []);
                 var store = self.get('container').lookup('store:main');
                 Em.$.each(data["name-suggest"][0].options, function(i, obj) {
-                    if (obj.payload.contactId) {
-                        store.find('contact', obj.payload.contactId).then(function(contact) {
-                            self.get('options').pushObject(contact);
-                        });
-                    }
-                    else if (obj.payload.orgId) {
+                    var ops = self.get('options');
+                    if (obj.payload.orgId) {
                         store.find('organizations/org', obj.payload.orgId).then(function(org) {
-                            self.get('options').pushObject(org.get('profile'));
+                            ops.pushObject(org.get('profile'));
                         });
                     }
+                    self.set('options', ops);
                 });
             },
             error: function(e) {
