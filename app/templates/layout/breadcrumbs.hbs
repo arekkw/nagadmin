@@ -1,14 +1,8 @@
 <div class="breadcrumbs" id="breadcrumbs">
 	{{bread-crumbs}}
 	<div class="nav-search" id="nav-search">
-		<form class="form-search">
-			{{#nag-es-autocomplete selectedValue=result placeHolderText="Search..." noMesssagePlaceHolderText="No results" selectItem="itemSelected" as |result|}}
-			  {{#if result.name}}
-				  	<p {{action "selectItem" result }}><b>{{result.name}}</b> <small>({{result.cellNumber}})</small></p>
-			  {{else}}
-					<p {{action "selectItem" result }}><b>{{result.orgName}}</b> <small>({{result.displayOrgTypes}})</small></p>
-			  {{/if}}
-			{{/nag-es-autocomplete}}
-		</form>
+		{{#nag-es-autocomplete selectedValue=result placeHolderText="Search..." inputClass="nav-search-input" noMesssagePlaceHolderText="No results" selectItem="itemSelected" as |result|}}
+		<p><b>{{result.orgName}}</b> <small>({{result.displayOrgTypes}})</small></p>
+		{{/nag-es-autocomplete}}
 	</div>
 </div>

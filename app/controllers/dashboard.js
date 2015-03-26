@@ -4,32 +4,12 @@ export default Ember.Controller.extend({
     breadCrumb: "Home",
     breadCrumbIconClass: "ace-icon fa fa-home home-icon",
 
-    watchSelectedValue: function(item) {
-        console.log("here!!");
+    watchSelectedValue: function() {
+        console.log("watchSelectedValue here!!");
+        var item = this.get("selectSuggestion");
         if (item) {
-            var className = item.toString();
-            if (className.indexOf("organizations/profile") > 0) {
-                //transition
-                console.log("transition to org " + item.get("id"));
-            }
-            else if (className.indexOf("contact") > 0) {
-                console.log("transition to contact " + item.get("id"));
-            }
+            this.transitionToRoute('organizations.edit.profile', item.get("org"));
         }
-    }.observes('selectSuggestion'),
-
-    actions: {
-        selectItem: function(item) {
-            if (item) {
-                var className = item.toString();
-                if (className.indexOf("organizations/profile") > 0) {
-                    //transition
-                    console.log("transition to org " + item.get("id"));
-                }
-                else if (className.indexOf("contact") > 0) {
-                    console.log("transition to contact " + item.get("id"));
-                }
-            }
-        }
-    }
+        this.set("selectSuggestion", null); //set to null in the event the same item is selected twice
+    }.observes('selectSuggestion')
 });
