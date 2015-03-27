@@ -1,8 +1,8 @@
 <div class="breadcrumbs" id="breadcrumbs">
 	{{bread-crumbs}}
 	<div class="nav-search" id="nav-search">
-		{{#nag-es-autocomplete selectedValue=result placeHolderText="Search..." inputClass="nav-search-input" noMesssagePlaceHolderText="No results" selectItem="itemSelected" as |result|}}
-		<p><b>{{result.orgName}}</b> <small>({{result.displayOrgTypes}})</small></p>
+		{{#nag-es-autocomplete selectedValue=result.id placeHolderText="Search..." noMesssagePlaceHolderText="No results" as |result|}}
+			<p><b>{{result.orgName}}</b> <small>({{result.displayOrgTypes}})</small></p>
 		{{/nag-es-autocomplete}}
 	</div>
 </div>

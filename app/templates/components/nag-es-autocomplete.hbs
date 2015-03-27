@@ -1,21 +1,21 @@
 <div class="typeahead-wrap">
   <span class="input-icon">
-    {{input class="nav-search-input" value=selectedValue placeholder=placeHolderText autocomplete="off" spellcheck="false"}}
+    {{input class="nav-search-input" value=inputVal placeholder=placeHolderText autocomplete="off" id="nav-search-input" spellcheck="false"}}
 		<i class="ace-icon fa fa-search nav-search-icon"></i>
 	</span>
   <span class="tt-dropdown-menu" {{bind-attr style=visibility}}>
-  <div class="tt-dataset-states">
-    <span class="tt-suggestions">
-    {{#each result in suggestions}}
-      <div {{bind-attr class=":tt-suggestion result.highlight:tt-cursor"}} {{action "selectItem" result }}>
-        {{yield result}}
-      </div>
-    {{else}}
-      <div class="message">
-        <p>{{noMesssagePlaceHolderText}}</p>
-      </div>
-    {{/each}}
-    </span>
-</div>
-</span>
+    <div class="tt-dataset-states">
+      <span class="tt-suggestions">
+      {{#each result in suggestions}}
+        <div {{bind-attr class=":tt-suggestion result.highlight:tt-cursor"}} {{action "selectItem" result }}>
+          {{yield result}}
+        </div>
+      {{else}}
+        <div class="message">
+          <p>{{noMesssagePlaceHolderText}}</p>
+        </div>
+      {{/each}}
+      </span>
+    </div>
+  </span>
 </div>

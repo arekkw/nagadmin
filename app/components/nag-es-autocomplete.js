@@ -1,5 +1,6 @@
 import AutoComplete from "ember-cli-auto-complete/components/auto-complete";
 import config from '../config/environment';
+import Ember from 'ember';
 
 export default AutoComplete.extend({
     valueProperty: "id",
@@ -11,7 +12,7 @@ export default AutoComplete.extend({
     loadMatches: function() {
         var self = this;
         var inputVal = this.get("inputVal");
-        if (!inputVal || inputVal.length < 2) {
+        if (!inputVal || inputVal.length < 3) {
             return;
         }
         var esSearchBody = {
@@ -19,32 +20,39 @@ export default AutoComplete.extend({
                 "text": inputVal,
                 "completion": {
                     "field": "suggest",
-                    "size": 5,
+                    "size": 10,
                     "fuzzy": {
                         "fuzziness": 2
                     }
                 }
             }
         };
-        Em.$.ajax({
+        var ops = [];
+        Ember.$.ajax({
             type: "POST",
             url: config.elasticsearchPath + '/orgs/_suggest',
             data: JSON.stringify(esSearchBody),
             success: function(data) {
                 self.set('options', []);
                 var store = self.get('container').lookup('store:main');
-                Em.$.each(data["name-suggest"][0].options, function(i, obj) {
-                    var ops = self.get('options');
-                    if (obj.payload.orgId) {
-                        store.find('organizations/org', obj.payload.orgId).then(function(org) {
+                var dedup = {};
+                Ember.$.each(data["name-suggest"][0].options, function(i, obj) {
+                    var id = obj.payload.orgId;
+                    if (id && !(id in dedup)) {
+                        //dedup
+                        dedup[id] = true;
+                        store.find('organizations/org', id).then(function(org) {
                             ops.pushObject(org.get('profile'));
                         });
+                    } else {
+                        console.debug("duplicate ignored: " + id);
                     }
                     self.set('options', ops);
                 });
             },
             error: function(e) {
                 console.error("Unable to search." + e);
+                self.set('options', []);
             },
             dataType: 'json'
         });
@@ -56,7 +64,11 @@ export default AutoComplete.extend({
 
     actions: {
         selectItem: function(item) {
-            this.get('parentView.controller').set('selectSuggestion', item);
+            this.setProperties({
+                'parentView.controller.selectSuggestion': item,
+                'options': [],
+                'inputVal': ""
+            });
             this.focusOut();
         }
     }
