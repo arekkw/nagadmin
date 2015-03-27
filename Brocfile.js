@@ -13,6 +13,12 @@ var app = new EmberApp({
 // Moment
 app.import('bower_components/moment/min/moment.min.js');
 
+// Raygun (Logging)
+app.import('bower_components/raygun4js/tracekit/tracekit.js');
+app.import('bower_components/raygun4js/src/raygun.js');
+app.import('bower_components/raygun4js/src/raygun.js-url.js');
+app.import('bower_components/raygun4js/src/raygun.tracekit.jquery.js');
+
 // Ace Sytlesheets
 app.import(aceVersion + '/assets/css/bootstrap.css');
 app.import(aceVersion + '/assets/css/font-awesome.css');
