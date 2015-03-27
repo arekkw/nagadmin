@@ -8,6 +8,8 @@ export default Ember.Controller.extend({
 		},
 
 		save: function() {
+			this.set('error', undefined);
+
 			var model = this.get('model');
 			var email = fbEmailKeyScrubber(model.get('email'));
 
@@ -16,7 +18,7 @@ export default Ember.Controller.extend({
 			}
 
 			if (model.get('isNew') && this.store.hasRecordForId('sec/user', model.get('id'))) {
-				console.error('model already exists');
+				this.set('error', 'User "' + model.get('id') + '" already exists.');
 			} else {
 				model.replaceRoleRelations(this.get('model.roles'));
 				model.save();
