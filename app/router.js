@@ -37,7 +37,7 @@ Router.map(function() {
 		this.resource('admin', function() {
 			this.resource('users', function() {
 				this.route('index');
-				this.route('add');
+				this.route('edit', { path: ':id' });
 			});
 		});
 
