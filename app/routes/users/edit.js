@@ -17,7 +17,7 @@ export default Ember.Route.extend({
 		if (model.get('isNew')) {
 			controller.set('breadCrumb', 'New');
 		} else {
-			controller.set('breadCrumb', 'Edit')
+			controller.set('breadCrumb', 'Edit');
 		}
 
 		return this._super(controller, model);
