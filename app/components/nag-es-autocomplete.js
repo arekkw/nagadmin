@@ -37,25 +37,21 @@ export default AutoComplete.extend({
             })
         });
         
-        query.then(function(data) {
-            Ember.run.later(this, function() {
+        query.then(data => {
+            Ember.run.later(() => {
                 var ids = Ember.Set.create();
-                var organizations = Ember.EnumerableUtils.filter(data['name-suggest'][0].options, function(option) {
+                var organizations = Ember.EnumerableUtils.filter(data['name-suggest'][0].options, option => {
                     var id = option.payload.orgId;
                     var isDuplicate = ids.contains(id);
                     ids.add(id);
                     return !isDuplicate;
-                }).map(function(option) {
-                    return this.store.find('organizations/org', option.payload.orgId);
-                }, this);
+                }).map(option => this.store.find('organizations/org', option.payload.orgId));
                 
                 this.set('organizations', organizations);
             });
-        }.bind(this), function(error) {
+        }, error => {
             console.error('Search failed', error);
-            Ember.run.later(this, function() {
-                this.set('organizations', Ember.A);
-            });
+            Ember.run.later(() => this.set('organizations', []));
         });
     }.observes("inputVal"),
 
