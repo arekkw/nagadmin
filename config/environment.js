@@ -20,7 +20,8 @@ module.exports = function(environment) {
     firebaseUrl:'https://nag-admin-dev.firebaseio.com/',
     cloudStorageDownload: 'https://www.googleapis.com/storage/v1/b/nag-admin-dev/o/',
     cloudStorageUpload: 'https://www.googleapis.com/upload/storage/v1/b/nag-admin-dev/o/',
-    cloudStorageProjectId: '937242013504'
+    cloudStorageProjectId: '937242013504',
+    elasticsearchPath: 'https://whs-2051859060.us-west-2.bonsai.io'
   };
 
   if (environment === 'development') {
@@ -48,13 +49,14 @@ module.exports = function(environment) {
     ENV.cloudStorageDownload = 'https://www.googleapis.com/storage/v1/b/nag-admin/o/';
     ENV.cloudStorageUpload = 'https://www.googleapis.com/upload/storage/v1/b/nag-admin/o/';
     ENV.cloudStorageProjectId = '300568130000';
+    ENV.elasticsearchPath = 'https://whs-2051859060.us-west-2.bonsai.io';
   }
   
   ENV.contentSecurityPolicy = {
     'default-src': "https://*.firebaseio.com",
     'script-src': "'self' 'unsafe-eval' 'unsafe-inline' https://*.firebaseio.com *.gstatic.com *.googleapis.com",
     'font-src': "'self' *.gstatic.com *.googleapis.com",
-    'connect-src': "'self' wss://*.firebaseio.com https://auth.firebase.com *.gstatic.com *.googleapis.com",
+    'connect-src': "'self' wss://*.firebaseio.com https://auth.firebase.com *.gstatic.com *.googleapis.com https://whs-2051859060.us-west-2.bonsai.io",
     'img-src': "'self' data: *.googleapis.com *.googleusercontent.com *.gstatic.com",
     'style-src': "'self' 'unsafe-inline' *.gstatic.com *.googleapis.com",
     'media-src': "'self'",

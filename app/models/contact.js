@@ -41,6 +41,8 @@ export default DS.Model.extend({
 		}
 	}.property('cellNumber', 'landlineNumber'),
 	
+	
+	//TODO: make a true two way relationship. Most likely a one to one should be fine.
 	orgs: function() {
 		var self = this;
 		if(!this.get('_orgProfiles')){
