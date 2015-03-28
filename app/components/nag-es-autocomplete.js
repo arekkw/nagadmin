@@ -4,57 +4,54 @@ import Ember from 'ember';
 
 export default AutoComplete.extend({
     valueProperty: "id",
+    
+    init: function() {
+        this.store = this.get('container').lookup('store:main');
+        this._super(arguments);
+    },
 
-    suggestions: function() {
-        return this.get("options");
-    }.property("options.@each"),
+    suggestions: Ember.computed.mapBy('organizations', 'profile'),
+    options: Ember.computed.mapBy('organizations', 'profile'),
 
     loadMatches: function() {
-        var self = this;
+        // var self = this;
         var inputVal = this.get("inputVal");
         if (!inputVal || inputVal.length < 3) {
             return;
         }
-        var esSearchBody = {
-            "name-suggest": {
-                "text": inputVal,
-                "completion": {
-                    "field": "suggest",
-                    "size": 10,
-                    "fuzzy": {
-                        "fuzziness": 2
-                    }
-                }
-            }
-        };
-        var ops = [];
-        Ember.$.ajax({
+        
+        var query = Ember.$.ajax({
             type: "POST",
             url: config.elasticsearchPath + '/orgs/_suggest',
-            data: JSON.stringify(esSearchBody),
-            success: function(data) {
-                self.set('options', []);
-                var store = self.get('container').lookup('store:main');
-                var dedup = {};
-                Ember.$.each(data["name-suggest"][0].options, function(i, obj) {
-                    var id = obj.payload.orgId;
-                    if (id && !(id in dedup)) {
-                        //dedup
-                        dedup[id] = true;
-                        store.find('organizations/org', id).then(function(org) {
-                            ops.pushObject(org.get('profile'));
-                        });
-                    } else {
-                        console.debug("duplicate ignored: " + id);
+            data: JSON.stringify({
+                "name-suggest": {
+                    "text": inputVal,
+                    "completion": {
+                        "field": "suggest",
+                        "size": 10,
+                        "fuzzy": {
+                            "fuzziness": 2
+                        }
                     }
-                    self.set('options', ops);
-                });
-            },
-            error: function(e) {
-                console.error("Unable to search." + e);
-                self.set('options', []);
-            },
-            dataType: 'json'
+                }
+            })
+        });
+        
+        query.then(data => {
+            Ember.run.later(() => {
+                var ids = Ember.Set.create();
+                var organizations = Ember.EnumerableUtils.filter(data['name-suggest'][0].options, option => {
+                    var id = option.payload.orgId;
+                    var isDuplicate = ids.contains(id);
+                    ids.add(id);
+                    return !isDuplicate;
+                }).map(option => this.store.find('organizations/org', option.payload.orgId));
+                
+                this.set('organizations', organizations);
+            });
+        }, error => {
+            console.error('Search failed', error);
+            Ember.run.later(() => this.set('organizations', []));
         });
     }.observes("inputVal"),
 
