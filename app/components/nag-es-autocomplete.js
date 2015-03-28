@@ -12,6 +12,10 @@ export default AutoComplete.extend({
 
     suggestions: Ember.computed.mapBy('organizations', 'profile'),
     options: Ember.computed.mapBy('organizations', 'profile'),
+    
+    mouseDown: function(a) {
+        a.target.click();
+    },
 
     loadMatches: function() {
         // var self = this;
@@ -30,6 +34,7 @@ export default AutoComplete.extend({
                         "field": "suggest",
                         "size": 10,
                         "fuzzy": {
+                            
                             "fuzziness": 2
                         }
                     }
@@ -56,14 +61,14 @@ export default AutoComplete.extend({
     }.observes("inputVal"),
 
     optionsToMatch: function() {
-        return this.get("options");
+        return this.get("organizations");
     }.property("options.@each"),
 
     actions: {
         selectItem: function(item) {
             this.setProperties({
                 'parentView.controller.selectSuggestion': item,
-                'options': [],
+                'organizations': [],
                 'inputVal': ""
             });
             this.focusOut();
