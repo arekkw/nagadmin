@@ -34,7 +34,6 @@ export default AutoComplete.extend({
                         "field": "suggest",
                         "size": 10,
                         "fuzzy": {
-                            
                             "fuzziness": 2
                         }
                     }
