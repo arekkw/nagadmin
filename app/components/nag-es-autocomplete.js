@@ -18,38 +18,36 @@ export default AutoComplete.extend({
     },
 
     loadMatches: function() {
-        // var self = this;
         var inputVal = this.get("inputVal");
-        if (!inputVal || inputVal.length < 3) {
+        if (!inputVal || inputVal.length < 2) {
+            this.set('organizations', []);
             return;
         }
         
         var query = Ember.$.ajax({
             type: "POST",
-            url: config.elasticsearchPath + '/orgs/_suggest',
+            url: config.elasticsearchPath + '/orgs/profiles/_search',
             data: JSON.stringify({
-                "name-suggest": {
-                    "text": inputVal,
-                    "completion": {
-                        "field": "suggest",
-                        "size": 10,
-                        "fuzzy": {
-                            "fuzziness": 2
-                        }
+                "query": {
+                    "query_string": {
+                       "default_field": "orgName",
+                       "query": inputVal
                     }
-                }
+                },
+                "_source": ["org"],
+                "size": 10
             })
         });
         
         query.then(data => {
             Ember.run.later(() => {
                 var ids = new Set([]);
-                var organizations = Ember.EnumerableUtils.filter(data['name-suggest'][0].options, option => {
-                    var id = option.payload.orgId;
+                var organizations = Ember.EnumerableUtils.filter(data['hits']['hits'], option => {
+                    var id = option._source.org;
                     var isDuplicate = ids.has(id);
                     ids.add(id);
                     return !isDuplicate;
-                }).map(option => this.store.find('organizations/org', option.payload.orgId));
+                }).map(option => this.store.find('organizations/org', option._source.org));
                 
                 this.set('organizations', organizations);
             });
