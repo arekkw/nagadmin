@@ -43,10 +43,10 @@ export default AutoComplete.extend({
         
         query.then(data => {
             Ember.run.later(() => {
-                var ids = Ember.Set.create();
+                var ids = new Set([]);
                 var organizations = Ember.EnumerableUtils.filter(data['name-suggest'][0].options, option => {
                     var id = option.payload.orgId;
-                    var isDuplicate = ids.contains(id);
+                    var isDuplicate = ids.has(id);
                     ids.add(id);
                     return !isDuplicate;
                 }).map(option => this.store.find('organizations/org', option.payload.orgId));
