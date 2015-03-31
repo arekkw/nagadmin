@@ -56,7 +56,7 @@ module.exports = function(environment) {
     'default-src': "https://*.firebaseio.com",
     'script-src': "'self' 'unsafe-eval' 'unsafe-inline' https://*.firebaseio.com *.gstatic.com *.googleapis.com",
     'font-src': "'self' *.gstatic.com *.googleapis.com",
-    'connect-src': "'self' wss://*.firebaseio.com https://auth.firebase.com *.gstatic.com *.googleapis.com https://whs-2051859060.us-west-2.bonsai.io",
+    'connect-src': "'self' wss://*.firebaseio.com https://auth.firebase.com *.gstatic.com *.googleapis.com https://whs-2051859060.us-west-2.bonsai.io https://api.raygun.io",
     'img-src': "'self' data: *.googleapis.com *.googleusercontent.com *.gstatic.com",
     'style-src': "'self' 'unsafe-inline' *.gstatic.com *.googleapis.com",
     'media-src': "'self'",
