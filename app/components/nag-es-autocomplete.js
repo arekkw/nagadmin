@@ -1,6 +1,7 @@
 import AutoComplete from "ember-cli-auto-complete/components/auto-complete";
 import config from '../config/environment';
 import Ember from 'ember';
+import SetUtils from '../utils/set-utils';
 
 export default AutoComplete.extend({
     valueProperty: "id",
@@ -41,15 +42,10 @@ export default AutoComplete.extend({
         
         query.then(data => {
             Ember.run.later(() => {
-                var ids = new Set([]);
-                var organizations = Ember.EnumerableUtils.filter(data['hits']['hits'], option => {
-                    var id = option._source.org;
-                    var isDuplicate = ids.has(id);
-                    ids.add(id);
-                    return !isDuplicate;
-                }).map(option => this.store.find('organizations/org', option._source.org));
-                
-                this.set('organizations', organizations);
+                this.set('organizations', SetUtils.map(
+                    new Set(data.hits.hits),
+                    hit => this.store.find('organizations/org', hit._source.org)
+                ));
             });
         }, error => {
             console.error('Search failed', error);
