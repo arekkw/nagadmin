@@ -62,7 +62,7 @@ export default Ember.Component.extend({
             }
             this.set('addressModel.metro', null);
             this.set('addressModel.muni', null);
-            //this.set('addressModel.district', null);
+            this.set('addressModel.district', null);
             this.set('addressModel.province', prov);
         }
         return prov;
@@ -89,7 +89,7 @@ export default Ember.Component.extend({
         this.set('addressModel.district', dist.id);
         this.set('addressModel.muni', null);
         return dist;
-    }.property(),
+    }.property('addressModel.district'),
     
     selectedMetro: function(k,metro) {
         //undefined sent on initial load/reload
