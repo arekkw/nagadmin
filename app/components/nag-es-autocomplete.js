@@ -1,6 +1,7 @@
 import AutoComplete from "ember-cli-auto-complete/components/auto-complete";
 import config from '../config/environment';
 import Ember from 'ember';
+import SetUtils from '../utils/set-utils';
 
 export default AutoComplete.extend({
     valueProperty: "id",
@@ -12,42 +13,39 @@ export default AutoComplete.extend({
 
     suggestions: Ember.computed.mapBy('organizations', 'profile'),
     options: Ember.computed.mapBy('organizations', 'profile'),
+    
+    mouseDown: function(a) {
+        a.target.click();
+    },
 
     loadMatches: function() {
-        // var self = this;
         var inputVal = this.get("inputVal");
-        if (!inputVal || inputVal.length < 3) {
+        if (!inputVal || inputVal.length < 2) {
+            this.set('organizations', []);
             return;
         }
         
         var query = Ember.$.ajax({
             type: "POST",
-            url: config.elasticsearchPath + '/orgs/_suggest',
+            url: config.elasticsearchPath + '/orgs/profiles/_search',
             data: JSON.stringify({
-                "name-suggest": {
-                    "text": inputVal,
-                    "completion": {
-                        "field": "suggest",
-                        "size": 10,
-                        "fuzzy": {
-                            "fuzziness": 2
-                        }
+                "query": {
+                    "query_string": {
+                       "default_field": "orgName",
+                       "query": inputVal
                     }
-                }
+                },
+                "_source": ["org"],
+                "size": 10
             })
         });
         
         query.then(data => {
             Ember.run.later(() => {
-                var ids = Ember.Set.create();
-                var organizations = Ember.EnumerableUtils.filter(data['name-suggest'][0].options, option => {
-                    var id = option.payload.orgId;
-                    var isDuplicate = ids.contains(id);
-                    ids.add(id);
-                    return !isDuplicate;
-                }).map(option => this.store.find('organizations/org', option.payload.orgId));
-                
-                this.set('organizations', organizations);
+                this.set('organizations', SetUtils.map(
+                    new Set(data.hits.hits),
+                    hit => this.store.find('organizations/org', hit._source.org)
+                ));
             });
         }, error => {
             console.error('Search failed', error);
@@ -56,14 +54,14 @@ export default AutoComplete.extend({
     }.observes("inputVal"),
 
     optionsToMatch: function() {
-        return this.get("options");
+        return this.get("organizations");
     }.property("options.@each"),
 
     actions: {
         selectItem: function(item) {
             this.setProperties({
                 'parentView.controller.selectSuggestion': item,
-                'options': [],
+                'organizations': [],
                 'inputVal': ""
             });
             this.focusOut();
