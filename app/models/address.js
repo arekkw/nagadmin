@@ -8,6 +8,8 @@ export default DS.Model.extend({
     metro: DS.attr('string'),
     muni: DS.attr('string'),
     ward: DS.attr('string'),
+    lat: DS.attr(),
+    lng: DS.attr(),
     createDate: DS.attr('date', { defaultValue: new Date() }),
     lastUpdateDate: DS.attr('date')
 });

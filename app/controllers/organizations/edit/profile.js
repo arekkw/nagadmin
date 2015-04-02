@@ -3,15 +3,33 @@ import Ember from 'ember';
 export default Ember.Controller.extend(Ember.Evented, {
     needs: ['organizations/edit'],
     breadCrumb: "Profile",
-    uploadedLog: [],
-    contactUploadedLog: [],
     
     clear: function() {
 		this.setProperties({
 			uploadedLog: [],
-			contactUploadedLog: []
+			contactUploadedLog: [],
+			marker: [],
+			zoom: 8,
+    		centerLat: -29.890662,
+    		centerLng: 30.978012
 		});
-	},
+	}.observes('model.id'),
+    
+    _marker: function(){
+    	var self = this;
+    	this.get('model.address').then(function(address){
+    		var lat = address.get('lat');
+    		var lng = address.get('lng');
+    		
+    		if(lat && lng){
+    			self.set('zoom', 16);
+	    		self.set('centerLat', lat);
+	    		self.set('centerLng', lng);
+	    		var marker = {title: self.get('model.orgName'), lat: lat, lng: lng};
+	    		self.set('marker',  Ember.A([marker]));
+    		}
+    	});
+    }.observes('model.address.lat','model.address.lng'),
 	
 	_uploadedLog: function(){
 		var logs = this.get('uploadedLog');
