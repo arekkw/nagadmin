@@ -1,12 +1,10 @@
-/* global Raygun */
 import Ember from 'ember';
-import {fbEmailKeyScrubber} from 'nag-admin/helpers/fb-email-key-scrubber';
 
 export default {
 	name: 'logging',
 	after: 'authentication',
 
-	initialize: function(container, application) {
+	initialize: function(container) {
 		// Capture Exceptions and log them to Raygun
 		Raygun.init('G5oRCMKDmgp63+QZnCHnZA==').attach();
 
