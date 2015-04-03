@@ -28,6 +28,24 @@
                             </div>
                         </div>
                         {{address-select addressModel=model.address hideLabels=false defaultProvince="KZ"}}
+                        <div class="row form-group">
+                            <div class="col-xs-6">
+                                <label class="control-label col-xs-6 no-padding-right" for="lat">Latitude:</label>
+                                <div class="col-xs-6">
+                                    <div class="clearfix">
+                                        {{input type="text" id="lat" class="col-xs-12" value=model.address.lat}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <label class="control-label col-xs-6 no-padding-right" for="lng">Longitude:</label>
+                                <div class="col-xs-6">
+                                    <div class="clearfix">
+                                        {{input type="text" id="lng" class="col-xs-12" value=model.address.lng}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label class="control-label col-xs-3 col-sm-3 no-padding-right" for="map">Map:</label>
                             <div class="col-xs-9">
@@ -38,6 +56,7 @@
                                          autoFitBounds=true
                                          gopt_zoomControl=true
                                          markers=marker
+                                         markerViewClass='map/marker'
                                          type='map'}}
                                 </div>
                             </div>
