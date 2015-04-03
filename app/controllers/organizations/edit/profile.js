@@ -116,24 +116,26 @@ export default Ember.Controller.extend(Ember.Evented, {
 			this.set('contactUploadedLog', []);
 			this.set('showContactUploadComp', true);
 		},
-		duplicateMarker: function(target) {
-			console.log('duplicateMarker');
-			var newMarker, marker;
-			// the ember target is the view, so our marker is the model of the controller for that view
-			marker = target.get('controller.model');
-			// we copy the marker
-			newMarker = Ember.getProperties(marker, Ember.keys(marker));
-			// add 0.0002 to its coordinates
-			newMarker.lat += 0.0002;
-			newMarker.lng += 0.0002;
-			// and insert it right before the copied marker
-			this.insertAt(this.indexOf(marker) + 1, newMarker);
-			// stop propagation so that the context menu doesn't show-up
-			return false;
+		checkAddress: function() {
+			var self = this;
+			var saContext = ", South Africa";
+			var physicalAddress = this.get('model.address.physicalAddress');
+			if(physicalAddress && physicalAddress.lastIndexOf(saContext) < 0) {
+				physicalAddress+=saContext;
+			}
+			var geocoder = new google.maps.Geocoder();
+			
+			geocoder.geocode( { 'address': physicalAddress}, function(results, status) {
+			    if (status == google.maps.GeocoderStatus.OK) {
+			    	self.set('model.address.lat', results[0].geometry.location.lat());
+					self.set('model.address.lng', results[0].geometry.location.lng());
+			    } else {
+			      alert('Geocode was not successful for the following reason: ' + status);
+			    }
+			  });
 		},
 		moveMarker: function(target) {
-			console.log('moveMarker');
-			var newMarker, marker;
+			var marker;
 			// the ember target is the view, so our marker is the model of the controller for that view
 			marker = target.get('controller.model');
 			this.set('model.address.lat', marker.lat);

@@ -5,7 +5,6 @@
 				<th>Organization</th>
 				<th>Purpose</th>
 				<th>Contact</th>
-				<th>Status</th>
 				<th>Flags</th>
 			</tr>
 		</thead>
@@ -21,8 +20,10 @@
 					{{/if}}
 					({{org.profile.contact.preferCellPhone}})
 				</td>
-				<td>{{org.status}}</td>
-				<td>[[flags]]</td>
+				<td>{{#if org.profile.address.missingLatLng}}
+					<span class="label label-sm label-warning arrowed-in">No Geo</span>
+					{{/if}}
+				</td>
 			</tr>
 			{{/each}}
 		</tbody>
