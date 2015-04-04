@@ -1,8 +1,8 @@
-<strong>{{model.orgName}}</strong>
+<strong>{{#link-to 'organizations.edit.profile' id}}{{title}}{{/link-to}}</strong>
 <p>Something here...</p>
 <p>
   Coordinates:<br>
   <small>
-    <code>{{model.address.lat}}</code>,<code>{{model.address.lng}}</code>
+    <code>{{lat}}</code>,<code>{{lng}}</code>
   </small>
 </p>
