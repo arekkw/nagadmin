@@ -15,10 +15,12 @@ export default Ember.Component.extend({
 			return tab;
 		});
 		this.set('tabs', tabs);
+		console.log("didInsertElement tab container");
 	}.on('didInsertElement'),
 
 	actions: {
 		changeTab: function(index) {
+			console.log("changing tabs " + index);
 			this.set('index', index);
 		}
 	}

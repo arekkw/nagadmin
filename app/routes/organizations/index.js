@@ -2,7 +2,7 @@ import Authenticated from 'nag-admin/routes/authenticated';
 
 export default Authenticated.extend({
 	setupController: function(controller) {
-		controller.set('model', this.store.findAll('organizations/org'));
+		controller.set('model', this.store.find('organizations/org', {limit: 50}));
 		this.store.find('ref/orgtype').then(function(orgTypes) {
 			controller.set('orgTypes', orgTypes);
 		});
