@@ -62,6 +62,10 @@ module.exports = function(environment) {
     'media-src': "'self'",
     'report-uri': "'self' 'unsafe-eval' 'unsafe-inline' https://*.firebaseio.com *.gstatic.com *.googleapis.com"
   }
+  
+  ENV.googleMap = {
+    apiKey: "AIzaSyBkHnoE2Bv1-auewtpm9MQ-e7zNyH7s3I8"
+  }
 
   return ENV;
 };

@@ -1,7 +1,40 @@
 import Ember from 'ember';
 
-export default Ember.Controller.extend({
-    zoom: 10,
-    centerLat: -29.890662,
-    centerLng: 30.978012
+export default Ember.ArrayController.extend({
+    zoom: 8,
+    centerLat: -30.14068,
+    centerLng: 30.136454,
+    allmarkers: [],
+    
+    initMap: function() {
+		console.log("didInsertElement map");
+	}.on('didInsertElement'),
+
+    _markers: function() {
+        var self = this;
+        this.get('model').forEach(function(org, i) {
+            //limit results
+            if(i > 50){
+                return;
+            }
+            org.get('profile').then(function(profile) {
+                profile.get('address').then(function(address) {
+                    var lat = address.get('lat');
+                    var lng = address.get('lng');
+                    if (lat && lng) {
+                        var marker = {
+                            id: org.get('id'),
+                            title: profile.get('orgName'),
+                            lat: lat,
+                            lng: lng,
+                            isDraggable: false
+                        }
+                        var markers = self.get('allmarkers').toArray();
+                        markers.push(marker);
+                        self.set('allmarkers', Ember.A(markers));
+                    }
+                });
+            });
+        });
+    }.observes('model.@each.org.profile.address')
 });

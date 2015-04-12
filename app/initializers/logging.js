@@ -1,4 +1,5 @@
-import Ember from 'ember';
+/* global Raygun */
+import Ember from 'ember'; 
 
 export default {
 	name: 'logging',
