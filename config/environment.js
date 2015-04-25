@@ -21,7 +21,9 @@ module.exports = function(environment) {
     cloudStorageDownload: 'https://www.googleapis.com/storage/v1/b/nag-admin-dev/o/',
     cloudStorageUpload: 'https://www.googleapis.com/upload/storage/v1/b/nag-admin-dev/o/',
     cloudStorageProjectId: '937242013504',
-    elasticsearchPath: 'https://whs-2051859060.us-west-2.bonsai.io'
+    elasticsearchPath: 'https://whs-2051859060.us-west-2.bonsai.io',
+    esUserName: 'dez3usb6ul',
+    esPassword: '758uye2hu1'
   };
 
   if (environment === 'development') {
@@ -50,6 +52,8 @@ module.exports = function(environment) {
     ENV.cloudStorageUpload = 'https://www.googleapis.com/upload/storage/v1/b/nag-admin/o/';
     ENV.cloudStorageProjectId = '300568130000';
     ENV.elasticsearchPath = 'https://nagadmin-prod-6126678235.eu-west-1.bonsai.io';
+    ENV.esUserName = '2ln2fzexy6';
+    ENV.esPassword = 'p2v3nsrvzk';
   }
   
   ENV.contentSecurityPolicy = {

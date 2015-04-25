@@ -28,6 +28,8 @@ export default AutoComplete.extend({
         var query = Ember.$.ajax({
             type: "POST",
             url: config.elasticsearchPath + '/orgs/profiles/_search',
+            username: config.esUserName,
+            password: config.esPassword,
             data: JSON.stringify({
                 "query": {
                     "query_string": {
@@ -37,7 +39,12 @@ export default AutoComplete.extend({
                 },
                 "_source": ["org"],
                 "size": 10
-            })
+            }),
+            beforeSend: function(req) {
+                var auth = btoa(config.esUserName + ':' + config.esPassword);
+                console.log("AUTH header: " + auth);
+                req.setRequestHeader('Authorization', 'Basic ' + auth);
+            }
         });
         
         query.then(data => {
