@@ -13,6 +13,9 @@ export default OrgEditBaseRoute.extend({
         this.store.find('ref/orgtype').then(function(orgTypes) {
             controller.set('orgTypes', orgTypes);
         });
+        this.store.find('ref/orgstatus').then(function(orgTypes) {
+            controller.set('orgStatuses', orgTypes);
+        });
         this.store.find('ref/contacttype').then(function(contactTypes) {
             controller.set('contactTypes', contactTypes);
         });

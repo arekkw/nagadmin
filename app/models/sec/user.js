@@ -1,4 +1,5 @@
 import DS from 'ember-data';
+import {fbEmailKeyScrubber} from 'nag-admin/helpers/fb-email-key-scrubber';
 
 export default DS.Model.extend({
 	roles: DS.hasMany('sec/role',{ async: true, defaultValue: []}),
@@ -9,6 +10,10 @@ export default DS.Model.extend({
 	createDate: DS.attr('date', {defaultValue: new Date()}),
 	lastLoginDate: DS.attr('date'),
 	authStore: DS.attr(),
+	
+	idToEmail: function() {
+      return fbEmailKeyScrubber(this.get('id'));
+    }.property(),
 
 	fullName: function() {
 		return this.get('firstName') + ' ' + this.get('lastName');

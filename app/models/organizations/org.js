@@ -8,6 +8,7 @@ export default DS.Model.extend({
   prog: DS.belongsTo('organizations/prog',{ async: true }),
   doc: DS.belongsTo('organizations/doc',{ async: true }),
   gallery: DS.belongsTo('organizations/gallery',{ async: true }),
+  orgstatus: DS.belongsTo('ref/orgstatus',{ async: true }),
   createDate: DS.attr('date', {defaultValue: new Date()}),
   lastUpdateDate: DS.attr('date'),
   status: DS.attr('string', {defaultValue: 'active'})
