@@ -9,7 +9,7 @@ Checkout http://nag.org.za/
 
 NAG is directly influencing significant sustainable social change in South Africa. They are a network of community-based NGOs focused 
 on social topics such as early childhood development, orphan care, elderly, youth development, health & HIV/AIDS programs, etc. NAG 
-maintains this network principally with their (future leaders)[http://www.nag.org.za/programmes/future-leaders/]. These are smart, 
+maintains this network principally through their [future leaders](http://www.nag.org.za/programmes/future-leaders/). These are smart, 
 driven, youth who make physical connections with hundreds of NGO's. This face to face approach not only facilitates NAGs mission to 
 train, equip, and support these NGO's but also puts them in a perfect place to collect data. That data can significantly improve 
 social programs through greater visibility, proving value to funding agencies and NGOs, awareness for governments, etc. 
