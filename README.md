@@ -58,7 +58,7 @@ However, if you would like to spin up your own environment, follow these instruc
 1. Setup a new firebase (https://www.firebase.com).
   1. Find "setup/nag-admin-starter.json". This includes all the expected reference and starter data.
     1. You need to have at least one user administrator in order to log in and get stuff started.
-    2. Find the "users" branch in the json and add your google account email. Make sure you replace and periods (".") with a pipe ("|").
+    2. Find the "users" branch in the json and add your google account email. Due to firebase not liking periods in keys, make sure you replace any period (".") with a pipe ("|").
   2. Import the edited nag-admin-starter.json into your firebase.
   3. Setup Login & Auth - the app is currently written for google auth.
 2. Create a new project at https://console.developers.google.com
@@ -66,6 +66,7 @@ However, if you would like to spin up your own environment, follow these instruc
   2. Maps: Add Maps APIs (Embed, Engine, Geolocation, Javascript)
   3. Storage: Add Cloud Storage APIs (JSON)
   4. Compute: Add google compute if you want to use it to run the "setup/nag-es-firebase-lstnr.js"
+3. You'll need to edit configuration for your elasticsearch instance as well. 
 
 ## Running / Development
 
