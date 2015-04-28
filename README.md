@@ -17,6 +17,16 @@ social programs through greater visibility, proving value to funding agencies an
 Its our hope though that this application's scope grows beyond NAG. We see potential for extending the principal users to other NGOs 
 and to maybe even government social workers. 
 
+Technology stack:
+* [Ember/Ember Data](http://emberjs.com/)
+* [Elasticsearch/Kibana](https://www.elastic.co/)
+* [Firebase](https://www.firebase.com)
+
+We need more help. If you think you might be intereted in contributing to this project, please let me know!
+
+Thanks,
+Bobby (bobbyhubbard at g-mail)
+
 ## Prerequisites
 
 You will need the following things properly installed on your computer.
