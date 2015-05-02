@@ -5,10 +5,12 @@ export default Ember.ArrayController.extend({
     centerLat: -30.14068,
     centerLng: 30.136454,
     allmarkers: [],
-    
-    initMap: function() {
-		console.log("didInsertElement map");
-	}.on('didInsertElement'),
+	
+	init: function() {
+	    this._super();
+		window.map = this;
+		this._markers(); //render pins each time view is re-inited
+	},
 
     _markers: function() {
         var self = this;
