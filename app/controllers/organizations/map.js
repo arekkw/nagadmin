@@ -8,17 +8,12 @@ export default Ember.ArrayController.extend({
 	
 	init: function() {
 	    this._super();
-		window.map = this;
 		this._markers(); //render pins each time view is re-inited
 	},
 
     _markers: function() {
         var self = this;
         this.get('model').forEach(function(org, i) {
-            //limit results
-            if(i > 50){
-                return;
-            }
             org.get('profile').then(function(profile) {
                 profile.get('address').then(function(address) {
                     var lat = address.get('lat');
