@@ -63,13 +63,13 @@
 	</div>
 	{{#tab-container classNames="col-xs-9"}}
 		{{#tab-pane title="Map"}}
-			{{render "organizations.map" model}}
+			{{render "organizations.map" model.organizations}}
 		{{/tab-pane}}
 		{{#tab-pane title="List"}}
-			{{render "organizations.list" model}}
+			{{render "organizations.list" model.organizations}}
 		{{/tab-pane}}
 		{{#tab-pane title="Statistics"}}
-			{{render "organizations.stats" model}}
+			{{render "organizations.stats" model.organizations}}
 		{{/tab-pane}}
 	{{/tab-container}}
 </div>
