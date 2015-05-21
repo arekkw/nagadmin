@@ -1,18 +1,21 @@
+import Ember from 'ember';
 import Authenticated from 'nag-admin/routes/authenticated';
 
 export default Authenticated.extend({
-	setupController: function(controller) {
-		controller.set('model', this.store.find('organizations/org'));
-		this.store.find('ref/orgtype').then(function(orgTypes) {
-			controller.set('orgTypes', orgTypes);
+	model: function() {
+		return Ember.RSVP.hash({
+			organizations: this.store.findAll('organizations/org'),
+			profiles: this.store.findAll('organizations/profile'),
+			addresses: this.store.findAll('address'),
+			orgTypes: this.store.find('ref/orgtype')
+		});
+	},
+
+	setupController: function(controller, model) {
+		model.filterAddress = this.store.getById('address', 'filterAddress') || this.store.createRecord('address', {
+			id: 'filterAddress'
 		});
 
-		// could be saved in the future as a preference. For now, the non-persisted 
-		// model is nice since it remembers the last filter state.
-		var filterAddress = this.store.getById('address',"filterAddress");
-		if(!filterAddress){
-			filterAddress = this.store.createRecord('address', {id:"filterAddress"});
-		}
-		controller.set('filterAddress', filterAddress);
+		this._super(controller, model);
 	}
 });
