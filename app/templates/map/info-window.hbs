@@ -1,8 +1,27 @@
-<strong>{{#link-to 'organizations.edit.profile' id}}{{title}}{{/link-to}}</strong>
-<p>Something here...</p>
-<p>
-  Coordinates:<br>
-  <small>
-    <code>{{lat}}</code>,<code>{{lng}}</code>
-  </small>
-</p>
+<address>
+	<strong class="bigger-125">{{#link-to 'organizations.edit.profile' id}}{{profile.orgName}}{{/link-to}}</strong><br>
+
+	{{#if profile.address.address1}}
+		<label>Address 1:</label> {{profile.address.address1}}<br>
+	{{/if}}
+	{{#if profile.address.address2}}
+		<label>Address 2:</label> {{profile.address.address2}}<br>
+	{{/if}}
+	{{#if profile.address.province.display}}
+		<label>Province:</label> {{profile.address.province.display}}<br>
+	{{/if}}
+	{{#if profile.address.district}}
+		<label>District:</label> {{profile.address.district}}<br>
+	{{/if}}
+	{{#if profile.address.metro}}
+		<label>Metro:</label> {{profile.address.metro}}<br>
+	{{/if}}
+	{{#if profile.address.muni}}
+		<label>Municipality:</label> {{profile.address.muni}}<br>
+	{{/if}}
+	{{#if profile.address.ward}}
+		<label>Ward:</label> {{profile.address.ward}}<br>
+	{{/if}}
+
+	<label>Coordinates:</label> <small><code>{{lat}}</code>,<code>{{lng}}</code></small>
+</address>
