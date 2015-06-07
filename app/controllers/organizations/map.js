@@ -13,7 +13,7 @@ export default Ember.Controller.extend({
 		}).map(function(org) {
 			return {
 				id: org.get('id'),
-				title: org.get('profile.orgName'),
+				profile: org.get('profile'),
 				lat: org.get('profile.address.lat'),
 				lng: org.get('profile.address.lng'),
 				isDraggable: false
