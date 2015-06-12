@@ -21,7 +21,6 @@ In order to deploy the application to Firebase, you will also need the following
 * Ensure that the above prerequisites are installed first.
 * `git clone <repository-url>` this repository
 * change into the new directory
-* `npm install`
 * `ember install`
 
 ## Logging in
