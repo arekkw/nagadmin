@@ -9,7 +9,8 @@ You will need the following things properly installed on your computer.
 * [Git](http://git-scm.com/)
 * [Node.js](http://nodejs.org/) (with NPM)
 * [Ember CLI](http://www.ember-cli.com/) - `npm install -g ember-cli`
-* [PhantomJS](http://phantomjs.org/) - Required for tests
+* [Bower.js](http://bower.io/) - `npm install -g bower`
+* [PhantomJS](http://phantomjs.org/) - `npm install -g phantomjs`
 
 In order to deploy the application to Firebase, you will also need the following installed.
 
