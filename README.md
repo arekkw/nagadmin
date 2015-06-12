@@ -8,9 +8,8 @@ You will need the following things properly installed on your computer.
 
 * [Git](http://git-scm.com/)
 * [Node.js](http://nodejs.org/) (with NPM)
-* [Bower](http://bower.io/)
-* [Ember CLI](http://www.ember-cli.com/)
-* [PhantomJS](http://phantomjs.org/)
+* [Ember CLI](http://www.ember-cli.com/) - `npm install -g ember-cli`
+* [PhantomJS](http://phantomjs.org/) - Required for tests
 
 In order to deploy the application to Firebase, you will also need the following installed.
 
@@ -18,6 +17,7 @@ In order to deploy the application to Firebase, you will also need the following
 
 ## Installation
 
+* Ensure that the above prerequisites are installed first.
 * `git clone <repository-url>` this repository
 * change into the new directory
 * `npm install`
@@ -47,7 +47,7 @@ However, if you would like to spin up your own environment, follow these instruc
 * `ember server`
 * Visit your app at http://localhost:4200.
 
-### Run via Cloud 9 IDE
+### Run via Cloud 9 IDE - Requires more than 512MB of memory
 
 * Create a new run configuration
 * Choose a name
