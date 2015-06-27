@@ -58,7 +58,7 @@ However, if you would like to spin up your own environment, follow these instruc
 * Choose a name
 * Set the command: `ember server --port $PORT --live-reload false`
 * Visit the application at <workspace-name>-<user-name>.c9.io
-* You will need to add your domain to Google and/or Firebase oauth in order to log in.
+* We will need to add your domain to Google and Firebase oauth in order for you be authorized to log in. Send me a note and I'll get your new domain added.
 
 ### Code Generators
 
